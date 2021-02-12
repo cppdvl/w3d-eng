@@ -6,18 +6,13 @@ extern "C"{
 }
 #include <GLFW/glfw3.h>
 
-template <typename T>
-class GenericSingleton {
-public:
-    static const T& sGetInstance(){
-        static const T t{};
-        return t;
-    }
-};
+#include <dge/dge.h>
+
+
 namespace DGE::System{
 
     using WindowID = uint64_t;
-    class WindowManager : public GenericSingleton<WindowManager>{
+    class WindowManager : public DGE::GenericSingleton<WindowManager>{
         friend class GenericSingleton;
         public:
             //static const WindowManager& sGetInstance();

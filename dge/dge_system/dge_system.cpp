@@ -24,8 +24,7 @@ std::map<WindowID, std::function<void(GLFWwindow*)>> id_processInput {
 }*/
 std::once_flag uniqueGLFWInitialization;
 void sWindowResizeCallback(GLFWwindow* ptrWindow, int width, int height){
-    glViewport(0, 0, width>>1, height>>1);
-    std::cout << width << " x " << height << std::endl;
+    glViewport(0, 0, width, height);
 }
 static WindowID __wid;
 const DGE::System::WindowID DGE::System::WindowManager::CreateWindowHND(int width, int height, const char* windowTitle){

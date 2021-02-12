@@ -5,6 +5,10 @@
 
 void DGE::Engine::Run(){
 
+    for (auto pweakScene : mpweakScenes){
+        pweakScene->mfInit();
+    }
+
     while (!glfwWindowShouldClose(mpWindow)){
         glfwSetWindowShouldClose(mpWindow, glfwGetKey(mpWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS);
 
@@ -17,6 +21,11 @@ void DGE::Engine::Run(){
         glfwSwapBuffers(mpWindow);
         glfwPollEvents();
     }
+
+    for (auto pweakScene : mpweakScenes){
+        pweakScene->mfFinish();
+    }
+
 }
 
 DGE::Engine::Engine()

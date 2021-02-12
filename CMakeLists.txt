@@ -21,25 +21,37 @@ include_directories(
 add_library(dge STATIC
   dge/dge.cpp
   dge/dge_scene/dge_scene.cpp
-        dge/dge_system/dge_system.cpp
-        dge/dge_system/glad/glad.c
+  dge/dge_system/dge_system.cpp
+  dge/dge_system/glad/glad.c
   )
 
 target_include_directories(dge PRIVATE
-        dge/dge_system
+  dge/dge_system
   )
 
 add_executable(dgesample0
   examples/dge_system/example0.cpp
   )
 
+add_executable(dgesample1
+  examples/dge_system/example1.cpp
+  )
+
+
 add_dependencies(dge glfw #[[glm]])
 add_dependencies(dgesample0 dge)
+add_dependencies(dgesample1 dge)
 
 target_include_directories(dgesample0 PRIVATE
   dge/dge_scene
-        dge/dge_system
+  dge/dge_system
   )
+
+target_include_directories(dgesample1 PRIVATE
+  dge/dge_scene
+  dge/dge_system
+  )
+
 
 target_link_libraries(dge PRIVATE
   ${glfw_LIBRARY_DIR}/libglfw3.a
@@ -49,6 +61,12 @@ target_link_libraries(dgesample0 PRIVATE
   ${CMAKE_BINARY_DIR}/libdge.a
   ${glfw_LIBRARY_DIR}/libglfw3.a
   )
+
+target_link_libraries(dgesample1 PRIVATE
+  ${CMAKE_BINARY_DIR}/libdge.a
+  ${glfw_LIBRARY_DIR}/libglfw3.a
+  )
+
 
 message(STATUS ${CMAKE_BINARY_DIR}/lib/libcpr.a)
   #[[add_custom_command(
